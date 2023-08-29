@@ -9,5 +9,10 @@ pipeline{
                 git branch: 'main', credentialsId: 'git', url: 'https://github.com/baji2110951/case-study-1.git'
             }
         }
+        stage("terraform init"){
+            steps{
+                sh 'terraform init'
+            }
+        }
     }
 }
