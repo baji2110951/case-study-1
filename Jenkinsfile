@@ -14,12 +14,12 @@ pipeline{
         }
         stage("terraform format"){
             steps{
-                echo "terraform fmt"
+                sh "terraform fmt"
             }
         }
-        stage("terraform plan"){
+        stage("terraform apply"){
             steps{
-                sh 'terraform plan'
+                sh 'terraform apply --auto-approve'
             }
         }
     }
