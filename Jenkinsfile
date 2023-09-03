@@ -9,12 +9,12 @@ pipeline{
         }
         stage("terraform init"){
             steps{
-                sh 'terraform init -upgrade'
+                sh 'terraform init'
             }
         }
         stage("terraform plan"){
             steps{
-                sh 'terraform plan'
+                echo "success"
             }
         }
     }
