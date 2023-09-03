@@ -14,7 +14,7 @@ pipeline{
         }
         stage("terraform plan"){
             steps{
-                echo "success"
+                echo "terraform fmt"
             }
         }
     }
