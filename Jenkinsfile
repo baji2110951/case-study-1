@@ -12,9 +12,14 @@ pipeline{
                 sh 'terraform init'
             }
         }
-        stage("terraform plan"){
+        stage("terraform format"){
             steps{
                 echo "terraform fmt"
+            }
+        }
+        stage("terraform plan"){
+            steps{
+                sh 'terraform plan'
             }
         }
     }
