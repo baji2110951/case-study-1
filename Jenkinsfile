@@ -9,7 +9,7 @@ pipeline{
         }
         stage("terraform init"){
             steps{
-                sh 'terraform init -upgrade'
+                sh 'terraform init -reconfigure'
             }
         }
         stage("terraform format"){
@@ -17,9 +17,9 @@ pipeline{
                 sh "terraform fmt"
             }
         }
-        stage("terraform apply"){
+        stage("terraform plan"){
             steps{
-                sh 'terraform apply --auto-approve'
+                sh 'terraform plan'
             }
         }
     }
