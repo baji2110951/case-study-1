@@ -9,12 +9,12 @@ pipeline{
         }
         stage("terraform init"){
             steps{
-                sh 'terraform init -reconfigure'
+                sh 'terraform init'
             }
         }
-        stage("terraform format"){
+        stage("terraform validate"){
             steps{
-                sh "terraform fmt"
+                sh "terraform validate"
             }
         }
         stage("terraform plan"){
