@@ -1,32 +1,14 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 5.0"
-    }
-  }
-}
-
-
-# AWS Provider
 provider "aws" {
-
-  region = var.region
-
+  region     = var.region
+  access_key = var.access_key
+  secret_key = var.secret_key
 }
 
-
-#ec2 Instance
-
-resource "aws_instance" "myec2" {
-
+resource "aws_instance" "web" {
+  ami           = var.ami
   instance_type = var.instance_type
 
-  ami = "ami-008b85aa3ff5c1b02"
-
   tags = {
-
-    name = "my_ec2"
-
+    Name = "IAC_server"
   }
 }
