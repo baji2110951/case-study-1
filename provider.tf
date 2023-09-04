@@ -8,12 +8,11 @@ terraform {
 }
 
 
-# Configure the AWS Provider
+# AWS Provider
 provider "aws" {
-  region = "ap-south-1"
-  access_key = AKIAVIIWYAHMXQK5WDPY
 
-secret_key = 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
+  region = var.region
+
 }
 
 
@@ -21,7 +20,7 @@ secret_key = wFDla9vgJsuRzX7L0uqomM3gJqKYhb+Ul4fO0gCO
 
 resource "aws_instance" "myec2" {
 
-  instance_type = "t2.micro"
+  instance_type = var.instance_type
 
   ami = "ami-008b85aa3ff5c1b02"
 
