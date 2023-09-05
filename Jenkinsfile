@@ -17,5 +17,16 @@ pipeline{
                 sh 'terraform validate'
             }
         }
+        stage("terraform plan"){
+            steps{
+                sh 'terraform plan'
+            }
+        }
+        stage("terraform action"){
+            steps{
+                echo "the terraform action is --> ${action} "
+                sh 'terraform ${action} --auto-approve'
+            }
+        }
     }
 }
