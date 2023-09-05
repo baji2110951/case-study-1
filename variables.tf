@@ -18,12 +18,12 @@ variable "ami" {
 
 variable "access_key" {
 
-  default = "AKIAVIIWYAHM36J32WMA"
+  default = "AKIAVIIWYAHM44OXDDH2"
 
 }
 
 variable "secret_key" {
 
-  default = "sO9uRcEBKs7fixSdnxWMcVU6Jxw+w/bgxQH3Gu7+"
+  default = "YEBLrCfmoxHKKnK9Usqkc2/fGtwxEgJjYZv5luHc"
 
 }
