@@ -21,3 +21,15 @@ variable "key_pair" {
   default = "tf-key"
 
 }
+
+variable "access_key" {
+
+  default = "AKIATWSDDDXZQYJRUZZW"
+
+}
+
+variable "secret_key" {
+
+  default = "JnCsOUfuoQWV5kwXYYLUkoQtRNZGVgovuXtcsL6w"
+
+}
