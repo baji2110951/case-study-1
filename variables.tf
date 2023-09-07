@@ -24,12 +24,12 @@ variable "key_pair" {
 
 variable "access_key" {
 
-  default = "AKIATWSDDDXZQYJRUZZW"
+  default = ""
 
 }
 
 variable "secret_key" {
 
-  default = "JnCsOUfuoQWV5kwXYYLUkoQtRNZGVgovuXtcsL6w"
+  default = ""
 
 }
