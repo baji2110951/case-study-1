@@ -16,21 +16,8 @@ variable "ami" {
 
 }
 
-variable "access_key" {
-
-  default = "AKIAVIIWYAHM44OXDDH2"
-
-}
-
 variable "key_pair" {
 
   default = "tf-key"
-
-}
-
-
-variable "secret_key" {
-
-  default = "YEBLrCfmoxHKKnK9Usqkc2/fGtwxEgJjYZv5luHc"
 
 }
