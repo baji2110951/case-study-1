@@ -31,7 +31,7 @@ resource "local_file" "t-key" {
 resource "aws_security_group" "my_SG" {
   name        = "TF_SG"
   description = "security group created using Terraform"
-  vpc_id      = "vpc-0befe2dff6b73f374"
+  vpc_id      = "vpc-01cc2e47f9f11fb6d"
 
   ingress {
     description = "SSH"
