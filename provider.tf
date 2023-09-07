@@ -67,7 +67,7 @@ resource "aws_security_group" "my_SG" {
 terraform {
   backend "s3" {
     bucket = "tf-bucket-112"
-    key    = "tf-folder/terraform.tfstate"
+    key    = "tf-bucket/terraform.tfstate"
     region = "ap-south-1"
   }
 }
