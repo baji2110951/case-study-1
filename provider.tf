@@ -1,7 +1,8 @@
 provider "aws" {
 
   region     = var.region
-  shared_credentials_files = ["${HOME}/.aws/creds"]
+  access_key = var.access_key
+  secret_key = var.secret_key
 }
 
 resource "aws_instance" "web" {
