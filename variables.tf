@@ -21,15 +21,3 @@ variable "key_pair" {
   default = "tf-key"
 
 }
-
-variable "access_key" {
-
-  default = ""
-
-}
-
-variable "secret_key" {
-
-  default = ""
-
-}
