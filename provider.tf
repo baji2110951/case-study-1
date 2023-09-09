@@ -62,14 +62,6 @@ resource "aws_security_group" "my_SG" {
   }
 }
 
-terraform {
-  backend "s3" {
-    bucket = "tf-bucket-112"
-    key    = "tf-bucket/terraform.tfstate"
-    region = "us-east-2"
-  }
-}
-
 output "IP_address" {
 
   value = aws_instance.web.public_ip
