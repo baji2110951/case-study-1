@@ -25,7 +25,7 @@ resource "tls_private_key" "rsa" {
 
 resource "local_file" "t-key" {
   content  = tls_private_key.rsa.private_key_pem
-  filename = "tkey.pem"
+  filename = "tkey"
 }
 
 resource "aws_security_group" "my_SG" {
