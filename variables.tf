@@ -18,6 +18,6 @@ variable "ami" {
 
 variable "key_pair" {
 
-  default = "tf-key"
+  default = "tfs-key"
 
 }
