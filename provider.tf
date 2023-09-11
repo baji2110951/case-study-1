@@ -3,16 +3,6 @@ provider "aws" {
   region     = var.region
 }
 
-resource "aws_instance" "web" {
-  ami             = var.ami
-  instance_type   = var.instance_type
-  key_name        = var.key_pair
-  security_groups = ["TF_SG"]
-  tags = {
-    Name = "IAC_server"
-  }
-}
-
 resource "aws_key_pair" "aws_key" {
   key_name   = "tfs-key"
   public_key = tls_private_key.rsa.public_key_openssh
@@ -26,6 +16,16 @@ resource "tls_private_key" "rsa" {
 resource "local_file" "t-key" {
   content  = tls_private_key.rsa.private_key_pem
   filename = "tkey"
+}
+
+resource "aws_instance" "web" {
+  ami             = var.ami
+  instance_type   = var.instance_type
+  key_name        = var.key_pair
+  security_groups = ["TF_SG"]
+  tags = {
+    Name = "IAC_server"
+  }
 }
 
 resource "aws_security_group" "my_SG" {
