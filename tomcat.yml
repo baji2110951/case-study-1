@@ -1,0 +1,83 @@
+---
+- name: Download Tomcat8
+  hosts: webservers
+  vars:
+    download_url: https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.93/bin/apache-tomcat-8.5.93.tar.gz
+  tasks:
+   - name: Download Open JDK
+     become: yes
+     yum:
+      name: java-1.8.0-openjdk
+      update_cache: yes
+      state: present
+
+   - name: check if Java is availble
+     shell:
+      java -version
+
+   - name: Create the group
+     become: yes
+     group:
+      name: tomcat
+      state: present
+   - name: Create the user
+     become: yes
+     user:
+        name: tomcat
+        state: present
+   - name: Create a Directory /opt/tomcat
+     become: yes
+     file:
+       path: /opt/tomcat
+       state: directory
+       mode: 0755
+       owner: tomcat
+       group: tomcat
+   - name: Download Tomcat using unarchive
+     become: yes
+     unarchive:
+       src: "{{download_url}}"
+       dest: /opt/tomcat
+       mode: 0755
+       remote_src: yes
+       group: tomcat
+       owner: tomcat
+
+   - name: Move files to the /opt/tomcat directory
+     become: yes
+     become_user: tomcat
+     shell: "mv /opt/tomcat/apache*/* /opt/tomcat"
+   - name: Creating a service file
+     become: yes
+     copy:
+      content: |-
+        [Unit]
+        Description=Tomcat Service
+        Requires=network.target
+        After=network.target
+        [Service]
+        Type=forking
+        User=tomcat
+        Environment="JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.382.b05-2.el9.x86_64/jre"
+        Environment="CATALINA_PID=/opt/tomcat/logs/tomcat.pid"
+        Environment="CATALINA_BASE=/opt/tomcat"
+        Environment="CATALINA_HOME=/opt/tomcat"
+        Environment="CATALINA_OPTS=-Xms512M -Xmx1024M -server -XX:+UseParallelGC"
+        ExecStart=/opt/tomcat/bin/startup.sh
+        ExecStop=/opt/tomcat/bin/shutdown.sh
+        Restart=on-abnormal
+        [Install]
+        WantedBy=multi-user.target
+      dest: /etc/init.d/tomcat.service
+   - name: permission to tomcat.service file
+     shell: sudo chmod 755 /etc/init.d/tomcat.service
+   - name: Reload the SystemD to re-read configurations
+     become: yes
+     systemd:
+        daemon-reload: yes
+   - name: Enable the tomcat service and start
+     become: yes
+     systemd:
+        name: tomcat
+        enabled: yes
+        state: started
