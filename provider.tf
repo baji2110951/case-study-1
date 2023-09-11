@@ -4,7 +4,7 @@ provider "aws" {
 }
 
 resource "aws_key_pair" "aws_key" {
-  key_name   = "tfs-key"
+  key_name   = var.key_pair
   public_key = tls_private_key.rsa.public_key_openssh
 }
 
